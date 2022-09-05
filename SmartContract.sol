@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 contract SmartContract{
@@ -7,7 +6,7 @@ contract SmartContract{
 struct Produit{
         uint idProduit;
         string NomProduit;
-        uint Prix
+        uint Prix;
     }
 struct Achat
     {
@@ -21,29 +20,30 @@ vendeur = msg.sender;
 
     uint vendeur;
     uint acheteur;
-    uint balances;
-    
-   
+    uint balance;
+
+
  mapping (uint => address) public acheteurTovendeur;
  mapping (address => uint) balances;
 
  
 
- function achat(uint _acheteur, uint _vendeur, uint _balances, uint amount) public returns (string) {
-    require(balances(_acheteur) >= Produit(Prix));
-    return "balances too low"
+ function achat(uint _acheteur, uint _vendeur, uint _balances, uint amount) public returns (string memory) {
+    require(balances(_acheteur) >= Produit.Prix);
+    return "balances too low";
 
- if (amount > balances[msg.sender])
-            revert InsufficientBalance({
+ if (amount > balances[msg.sender]){
+            revert ({
                 requested: amount,
                 available: balances[msg.sender]
             });
 
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        emit Sent(msg.sender, receiver, amount);
-
+        balances[acheteur] -= amount;
+        balances[vendeur] += amount;
+       // emit Sent(acheteur, vendeur, amount);
+        //return "Transaction made";
  }
 
+   // return "Transaction made";
 
-}
+}}
